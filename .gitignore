@@ -1,0 +1,5 @@
+TOKEN.txt
+banned_words.txt
+__pycache__/**
+**.un~
+**.swp
