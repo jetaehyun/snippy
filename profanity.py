@@ -12,11 +12,12 @@ class filterManager:
     def __generateList(self):
         try:
             # open and add words to dictionary
-            words = open(self.textFile, 'w+').readlines()
+            file = open(self.textFile, 'w+')
+            words = file.readlines()
             for i in words:
                 self.bannedWords[i.rstrip()] = 1
 
-            words.close()
+            file.close()
 
         except OSError as err:
             print("OS error: {0}".format(err))
