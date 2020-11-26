@@ -1,6 +1,6 @@
 
 class filterManager:
-    
+
     bannedWords = {}
     textFile = ''
 
@@ -12,19 +12,21 @@ class filterManager:
     def __generateList(self):
         try:
             # open and add words to dictionary
-            words = open(self.textFile, 'r').readlines()
+            words = open(self.textFile, 'w+').readlines()
             for i in words:
                 self.bannedWords[i.rstrip()] = 1
 
+            words.close()
+
         except OSError as err:
             print("OS error: {0}".format(err))
-    
+
     def addWord(self, word):
 
         # check if word exists, if not then add to dictionary and textfile
         if(self.bannedWords.get(word) == None):
             self.bannedWords[word] = 1
-            
+
             words = open(self.textFile, 'a')
             words.write(word + '\n')
             words.close()
