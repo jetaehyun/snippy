@@ -1,11 +1,11 @@
 from discord.ext import commands
 import discord
-import profanity
+from profanity import filterManager
 
 
 bot = commands.Bot(command_prefix='!')
 TOKEN = open("TOKEN.txt", "r").readline()
-bot_filter = profanity.filterManager('banned_words.txt')
+bot_filter = filterManager('banned_words.txt')
 
 @bot.command(pass_context=True)
 @commands.has_guild_permissions(administrator=True)
@@ -19,6 +19,7 @@ async def snip(ctx, *arg):
 @bot.command(pass_context = True)
 @commands.has_guild_permissions(administrator=True)
 async def alert(ctx, arg):
+    bot_filter.printWords()
     await ctx.send(arg)
 
 @bot.event
